@@ -5,7 +5,7 @@
 [![Tests](https://github.com/simonw/datasette-expose-env/workflows/Test/badge.svg)](https://github.com/simonw/datasette-expose-env/actions?query=workflow%3ATest)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/simonw/datasette-expose-env/blob/main/LICENSE)
 
-Datasette plugin to expose selected environment variables at /-/env for debugging
+Datasette plugin to expose selected environment variables at `/-/env` for debugging
 
 ## Installation
 
@@ -13,9 +13,33 @@ Install this plugin in the same environment as Datasette.
 
     datasette install datasette-expose-env
 
-## Usage
+## Configuration
 
-Usage instructions go here.
+Decide on a list of environment variables you would like to expose, then add the following to your `metadata.yml` configuration:
+
+```yaml
+plugins:
+    datasette-expose-env:
+    - ENV_VAR_1
+    - ENV_VAR_2
+    - ENV_VAR_3
+```
+
+If you are using JSON in a `metadata.json` file use the following:
+
+```json
+{
+    "plugins": {
+        "datasette-expose-env": [
+            "ENV_VAR_1",
+            "ENV_VAR_2",
+            "ENV_VAR_3"
+        ]
+    }
+}
+```
+
+Visit `/-/env` on your Datasette instance to see the values of the environment variables.
 
 ## Development
 
