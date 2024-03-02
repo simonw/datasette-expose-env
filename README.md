@@ -10,16 +10,17 @@ Datasette plugin to expose selected environment variables at `/-/env` for debugg
 ## Installation
 
 Install this plugin in the same environment as Datasette.
-
-    datasette install datasette-expose-env
-
+```bash
+datasette install datasette-expose-env
+```
 ## Configuration
 
 Decide on a list of environment variables you would like to expose, then add the following to your `metadata.yml` configuration:
 
 ```yaml
 plugins:
-    datasette-expose-env:
+  datasette-expose-env:
+    variables:
     - ENV_VAR_1
     - ENV_VAR_2
     - ENV_VAR_3
@@ -29,30 +30,45 @@ If you are using JSON in a `metadata.json` file use the following:
 
 ```json
 {
-    "plugins": {
-        "datasette-expose-env": [
-            "ENV_VAR_1",
-            "ENV_VAR_2",
-            "ENV_VAR_3"
-        ]
+  "plugins": {
+    "datasette-expose-env": {
+      "variables": [
+        "ENV_VAR_1",
+        "ENV_VAR_2",
+        "ENV_VAR_3"
+      ]
     }
+  }
 }
 ```
+To show a full list of redacted environment variables use `"show_all_redacted": true`:
+
+```yaml
+plugins:
+  datasette-expose-env:
+    show_all_redacted: true
+    variables:
+    - ENV_VAR_1
+    - ENV_VAR_2
+```
+This will show the values for `ENV_VAR_1` and `ENV_VAR_2` and then a full list of other variables with their value shown as `...`.
+
 
 Visit `/-/env` on your Datasette instance to see the values of the environment variables.
 
 ## Development
 
 To set up this plugin locally, first checkout the code. Then create a new virtual environment:
-
-    cd datasette-expose-env
-    python3 -m venv venv
-    source venv/bin/activate
-
+```bash
+cd datasette-expose-env
+python3 -m venv venv
+source venv/bin/activate
+```
 Now install the dependencies and test dependencies:
-
-    pip install -e '.[test]'
-
+```bash
+pip install -e '.[test]'
+```
 To run the tests:
-
-    pytest
+```bash
+pytest
+```
