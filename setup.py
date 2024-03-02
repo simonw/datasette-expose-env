@@ -34,5 +34,5 @@ setup(
     entry_points={"datasette": ["expose_env = datasette_expose_env"]},
     install_requires=["datasette"],
     extras_require={"test": ["pytest", "pytest-asyncio"]},
-    python_requires=">=3.7",
+    python_requires=">=3.8",
 )
